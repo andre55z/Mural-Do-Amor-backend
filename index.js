@@ -94,7 +94,7 @@ app.post('/update', (req, res)=>{
     Usuario.update({
         nome: nome,
         mensagem: mensagem,
-        data_edicao: formatada
+        data_edicao: dataFormatada
     },{
         where: {
             id:id

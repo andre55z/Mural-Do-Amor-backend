@@ -28,10 +28,13 @@ app.post('/mensagem', (req, res)=>{
         texto = valida.toLowerF(texto);
         texto = valida.trimF(texto);
         const dataAtual = new Date();
+        dataAtual.setHours(dataAtual.getHours() - 3);
+
         let dataFormatada = dataAtual.toLocaleDateString('pt-BR');
         let hour = dataAtual.getHours();
         let min = dataAtual.getMinutes();
-        dataFormatada = dataFormatada + ' ' + hour + 'h' + min;
+
+        dataFormatada = dataFormatada + ' ' + hour + 'h' + (min < 10 ? '0' + min : min);
         pessoa = valida.toLowerF(pessoa);
         
         Usuario.create({
@@ -78,10 +81,15 @@ app.post('/update', (req, res)=>{
     }
     else
         console.log('nao recebido a mensagem');
-    const now = new Date();
-    const hora = now.getHours()
-    const min = now.getMinutes()
-    const formatada = `Editado em ${now.toLocaleDateString('pt-BR')} às ${hora}h${min}`;
+    const dataAtual = new Date();
+    // subtrair 3 horas
+    dataAtual.setHours(dataAtual.getHours() - 3);
+
+    let dataFormatada = dataAtual.toLocaleDateString('pt-BR');
+    let hour = dataAtual.getHours();
+    let min = dataAtual.getMinutes();
+
+    dataFormatada = dataFormatada + ' ' + hour + 'h' + (min < 10 ? '0' + min : min);
     mensagem = valida.trimF(mensagem);
     Usuario.update({
         nome: nome,

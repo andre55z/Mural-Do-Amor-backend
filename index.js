@@ -89,7 +89,7 @@ app.post('/update', (req, res)=>{
     let hour = dataAtual.getHours();
     let min = dataAtual.getMinutes();
 
-    dataFormatada = dataFormatada + ' ' + hour + 'h' + (min < 10 ? '0' + min : min);
+    dataFormatada = 'Editado em ' + dataFormatada + ' ' + hour + 'h' + (min < 10 ? '0' + min : min);
     mensagem = valida.trimF(mensagem);
     Usuario.update({
         nome: nome,
